@@ -98,7 +98,7 @@ page:
 
 # Post
 post:
-  per_page: 10
+  per_page: 20
 
   # Display Table of content, default to `true`
   toc: true
@@ -306,7 +306,7 @@ plugins:
       var number1 = Math.floor(Math.random()*29+1);  
       if(document.getElementById('music')!==null){             
       if(document.getElementById('music').paused){ 
-      document.getElementById('music').src = '/b/' + number1 + '.mp3';
+      document.getElementById('music').src = 'http://cdn.1ouo1.com/' + number1 + '.mp3';
       document.getElementById('music').play();
       alert('The B is late but not absent, just a sec.');
       }else{
@@ -315,11 +315,11 @@ plugins:
       }
       }   
       })();" src="/b/libi2.png" style="width: 30%; height: 30%; margin: -50px 110px 50px 110px; left: 50%; top: 50%; text-align: center; vertical-align: middle;"></img>
-      <audio id="music" controls="controls" preload hidden><source src="/b/2.mp3" type="audio/mpeg" ></audio>
+      <audio id="music" controls="controls" preload hidden><source src="http://cdn.1ouo1.com/2.mp3" type="audio/mpeg" ></audio>
       <script>var audio = document.getElementById('music'); 
       audio.addEventListener('ended', function(){
       var number = Math.floor(Math.random()*29+1);
-      document.getElementById('music').src = '/b/' + number + '.mp3';
+      document.getElementById('music').src = 'http://cdn.1ouo1.com/' + number + '.mp3';
       audio.play();
       }, true);</script>
 

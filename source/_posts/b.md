@@ -1,5 +1,5 @@
 ---
-title: 你可能想听的李逼 
+title: 你可能想听的李逼 | 新视频
 date: 1978-11-13 20:20:24
 tags: B
 toc: true
@@ -7,6 +7,19 @@ thumbnail: http://cdn.1ouo1.com/hp3vm.png
 aplayer: true
 copyright: false
 ---
+
+`以下更新于 7 月 22 日`
+
+无奈我和谐大国，半夜打球时候朋友告诉我刚出炉的视频都被禁了...只能把视频暂时放自己窝里啦。
+
+<video width="400" height="168" src="http://cdn.1ouo1.com/syl.mp4" poster="http://cdn.1ouo1.com/wcs8f.png" preload="none" controls="controls"></video>
+
+
+
+
+
+
+`以下更新于 6 月 24 日`
 
 李逼 2019 跨年的所有曲目我们已经把它们做了必要的修复还原，单独裁剪出来了。
 

@@ -31,7 +31,7 @@ calendar_dir: /calendar
 
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render:
+skip_render: moto/**
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -72,23 +72,38 @@ pagination_dir: page
 #theme: next
 #theme: diaspora
 #theme: archer
+#theme: inside
 theme: inside
+#theme: newside
 #theme: landscape
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
 - type: git
-  repo: https://github.com/omnibingo/omnibingo.github.io.git
+  repo: git@github.com:omnibingo/omnibingo.github.io.git
   branch: master
 
 - type: git
-  repo: https://git.coding.net/omnibingo/talk2.it.git
-  branch: master
-
-- type: git
-  repo: https://gitee.com/omnibingo/talk2.it.git
+  repo: git@gitee.com:omnibingo/talk2.it.git
   branch: master 
+
+- type: cos
+  secretId: AKIDVpwscA0pqdDfu0rZ2ILBnJcibMuFjH1Y
+  secretKey: UlpgJjz2sUt54qTxEH7kDTWnvra7QYS9
+  bucket: talk2it-1253730645
+  region: na-ashburn  
+
+- type: cos
+  secretId: AKIDVpwscA0pqdDfu0rZ2ILBnJcibMuFjH1Y
+  secretKey: UlpgJjz2sUt54qTxEH7kDTWnvra7QYS9
+  bucket: cntalk2it-1253730645
+  region: ap-shanghai
+
+
+#- type: git
+#  repo: https://git.coding.net/omnibingo/talk2.it.git
+#  branch: master
 
 #- type: git
 #  repo: https://git.coding.net/omnibingo/omnibingo.git

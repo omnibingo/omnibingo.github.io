@@ -1,6 +1,6 @@
----
-title: test | 二. 回归（Regression）　       
-date: false
+--- 
+title: Mr.R  
+date: 2022-11-13 20:20:24
 mathjax: true
 comments: false
 copyright: false
@@ -38,8 +38,11 @@ background-color: #f3f6f7;
 </style>
 {% endraw %}
 
+??
 
-![](http://cdn.1ouo1.com/0g1oc.gif)
 
+![](http://cdn.1ouo1.com/6i95o.gif)
+
+???
 
 
