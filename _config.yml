@@ -83,7 +83,7 @@ deploy:
 
 
 - type: git
-  repo: git@gitee.com:omnibingo/talk2.it.git
+  repo: https://gitee.com/omnibingo/talk2.it.git
   branch: master 
 
 - type: cos
