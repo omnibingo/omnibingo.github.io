@@ -80,10 +80,11 @@ theme: inside
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-- type: git
-  repo: git@github.com:omnibingo/omnibingo.github.io.git
-  branch: master
 
+
+- type: git
+  repo: https://gitee.com/omnibingo/talk2.it.git
+  branch: master 
 
 - type: cos
   secretId: AKIDVpwscA0pqdDfu0rZ2ILBnJcibMuFjH1Y
