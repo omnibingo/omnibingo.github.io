@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+<meta charset="utf-8">
+<title>聊明白机器学习 | 四. 梯度下降（Gradient Descent）　 - 對話·機器 | Talk2.it</title>
+<base href="/">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<link rel="canonical" href="https://talk2.it/post/gradient_descent/">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<meta name="description" content="前言干话 今年春天开车到千岛湖（没骑摩托真的特别令人后悔），被一个宽阔路面的限速 40km/h 探头给逮到了…开了个 60 多，扣 12 分 🙂。 地方财政特色创收，作为没有申诉通道的小老百姓我也不好多说什么，提醒各位往淳安走的，都稍微留心一下。总之啥都不能开的日子真的很煎熬，但终于把驾照的账还清啦。 这个月还有些挠心事处理掉，就可以彻底活过来了！废话不多说，今天啃个硬骨头吧，详细聊聊梯度下降">
+<meta name="keywords" content="Basic">
+<meta property="og:type" content="website">
+<meta property="og:title" content="聊明白机器学习 | 四. 梯度下降（Gradient Descent）　">
+<meta property="og:url" content="https://talk2.it/post/gradient_descent/index.html">
+<meta property="og:site_name" content="對話·機器 | Talk2.it">
+<meta property="og:description" content="前言干话 今年春天开车到千岛湖（没骑摩托真的特别令人后悔），被一个宽阔路面的限速 40km/h 探头给逮到了…开了个 60 多，扣 12 分 🙂。 地方财政特色创收，作为没有申诉通道的小老百姓我也不好多说什么，提醒各位往淳安走的，都稍微留心一下。总之啥都不能开的日子真的很煎熬，但终于把驾照的账还清啦。 这个月还有些挠心事处理掉，就可以彻底活过来了！废话不多说，今天啃个硬骨头吧，详细聊聊梯度下降">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://cdn.1ouo1.com/nwgoe.jpg">
+<meta property="og:updated_time" content="2019-08-14T11:35:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="聊明白机器学习 | 四. 梯度下降（Gradient Descent）　">
+<meta name="twitter:description" content="前言干话 今年春天开车到千岛湖（没骑摩托真的特别令人后悔），被一个宽阔路面的限速 40km/h 探头给逮到了…开了个 60 多，扣 12 分 🙂。 地方财政特色创收，作为没有申诉通道的小老百姓我也不好多说什么，提醒各位往淳安走的，都稍微留心一下。总之啥都不能开的日子真的很煎熬，但终于把驾照的账还清啦。 这个月还有些挠心事处理掉，就可以彻底活过来了！废话不多说，今天啃个硬骨头吧，详细聊聊梯度下降">
+<meta name="twitter:image" content="http://cdn.1ouo1.com/nwgoe.jpg">
+<link rel="stylesheet" href="/fonts.b9b22ef890c930ac7a13.css">
+<link rel="stylesheet" href="/styles.f3ea1e219d757e5d89f5.css">
+<link rel="stylesheet" href="/theme.e59bab8d27f83a2ab006.css">
+<script src="/config.8e0822de1dd5cc7e6ca8.js"></script>
+<script type="application/ld+json">[{"@context":"http://schema.org","@type":"WebSite","publisher":{"@type":"Person","name":"Bingo","description":"A good talk to the MACHINE in front of you.","image":"http://cdn.1ouo1.com/3m7q9.jpg"},"url":"https://talk2.it","image":"http://cdn.1ouo1.com/3m7q9.jpg","description":"和眼前的世界好好谈谈","author":{"@type":"Person","name":"Bingo","description":"A good talk to the MACHINE in front of you.","image":"http://cdn.1ouo1.com/3m7q9.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"}},{"@context":"http://schema.org","@type":"Article","articleSection":"","url":"https://talk2.it/post/gradient_descent/","headline":"聊明白机器学习 | 四. 梯度下降（Gradient Descent）　","image":"http://cdn.1ouo1.com/nwgoe.jpg","datePublished":"2019-07-23T12:20:24.000Z","dateModified":"2019-08-14T11:35:04.000Z","keywords":"Basic","description":" 前言干话\n今年春天开车到千岛湖（没骑摩托真的特别令人后悔），被一个宽阔路面的限速 40km/h 探头给逮到了…开了个 60 多，扣 12 分 🙂。 地方财政特色创收，作为没有申诉通道的小老百姓我也不好多说什么，提醒各位往淳安走的，都稍微留心一下。总之啥都不能开的日子真的很煎熬，但终于把驾照的账还清啦。\n这个月还有些挠心事处理掉，就可以彻底活过来了！废话不多说，今天啃个硬骨头吧，详细聊聊梯度下降（Gradient Descent）。","publisher":{"@type":"Organization","name":"對話·機器 | Talk2.it","logo":{"@type":"ImageObject","url":"http://cdn.1ouo1.com/3m7q9.jpg"}},"author":{"@type":"Person","name":"Bingo","description":"A good talk to the MACHINE in front of you.","image":"http://cdn.1ouo1.com/3m7q9.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://talk2.it/post/gradient_descent/"},"thumbnailUrl":"http://cdn.1ouo1.com/nwgoe.jpg"}]</script><script async src="//www.googletagmanager.com/gtag/js?id=UA-138981623-1"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag('js', new Date());gtag('config', 'UA-138981623-1');</script><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<is-d2a57d></is-d2a57d>
+<script src="/runtime.a5dd35324ddfd942bef1.js"></script>
+<script src="/polyfills.bd3fb034406e30e3b5dc.js"></script>
+<script src="/main.dcb2507d5003b2c77884.en.js"></script></body>
+</html>

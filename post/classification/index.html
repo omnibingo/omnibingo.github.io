@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+<meta charset="utf-8">
+<title>聊明白机器学习 | 五. 分类（Classification）　 - 對話·機器 | Talk2.it</title>
+<base href="/">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<link rel="canonical" href="https://talk2.it/post/classification/">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<meta name="description" content="前言干话 前几天骑摩托跑了一趟安徽小长途，皖南之山风光怡人，道不宽弯不缓但好在路面整洁鲜有砂石，人车稀少，即便穿过村庄的羊肠小道都被收拾得清清爽爽，一不留神就能满胎。特别是黄山附近的 S103、G205，黄昏和夜间骑行你甚至会恍惚从风中听到应景的 &amp;lt;豆腐宅急便&amp;gt;… “没上黄山。” “啊？你都到黄山脚下了没上山去？” “每天舒舒服服睡到中午，骑个车多美，爬山下回吧…” 回杭第一天就发现">
+<meta name="keywords" content="Basic">
+<meta property="og:type" content="website">
+<meta property="og:title" content="聊明白机器学习 | 五. 分类（Classification）　">
+<meta property="og:url" content="https://talk2.it/post/classification/index.html">
+<meta property="og:site_name" content="對話·機器 | Talk2.it">
+<meta property="og:description" content="前言干话 前几天骑摩托跑了一趟安徽小长途，皖南之山风光怡人，道不宽弯不缓但好在路面整洁鲜有砂石，人车稀少，即便穿过村庄的羊肠小道都被收拾得清清爽爽，一不留神就能满胎。特别是黄山附近的 S103、G205，黄昏和夜间骑行你甚至会恍惚从风中听到应景的 &amp;lt;豆腐宅急便&amp;gt;… “没上黄山。” “啊？你都到黄山脚下了没上山去？” “每天舒舒服服睡到中午，骑个车多美，爬山下回吧…” 回杭第一天就发现">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://cdn.1ouo1.com/qh00v.jpg">
+<meta property="og:updated_time" content="2019-08-10T21:08:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="聊明白机器学习 | 五. 分类（Classification）　">
+<meta name="twitter:description" content="前言干话 前几天骑摩托跑了一趟安徽小长途，皖南之山风光怡人，道不宽弯不缓但好在路面整洁鲜有砂石，人车稀少，即便穿过村庄的羊肠小道都被收拾得清清爽爽，一不留神就能满胎。特别是黄山附近的 S103、G205，黄昏和夜间骑行你甚至会恍惚从风中听到应景的 &amp;lt;豆腐宅急便&amp;gt;… “没上黄山。” “啊？你都到黄山脚下了没上山去？” “每天舒舒服服睡到中午，骑个车多美，爬山下回吧…” 回杭第一天就发现">
+<meta name="twitter:image" content="http://cdn.1ouo1.com/qh00v.jpg">
+<link rel="stylesheet" href="/fonts.b9b22ef890c930ac7a13.css">
+<link rel="stylesheet" href="/styles.f3ea1e219d757e5d89f5.css">
+<link rel="stylesheet" href="/theme.e59bab8d27f83a2ab006.css">
+<script src="/config.8e0822de1dd5cc7e6ca8.js"></script>
+<script type="application/ld+json">[{"@context":"http://schema.org","@type":"WebSite","publisher":{"@type":"Person","name":"Bingo","description":"A good talk to the MACHINE in front of you.","image":"http://cdn.1ouo1.com/3m7q9.jpg"},"url":"https://talk2.it","image":"http://cdn.1ouo1.com/3m7q9.jpg","description":"和眼前的世界好好谈谈","author":{"@type":"Person","name":"Bingo","description":"A good talk to the MACHINE in front of you.","image":"http://cdn.1ouo1.com/3m7q9.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"}},{"@context":"http://schema.org","@type":"Article","articleSection":"","url":"https://talk2.it/post/classification/","headline":"聊明白机器学习 | 五. 分类（Classification）　","image":"http://cdn.1ouo1.com/qh00v.jpg","datePublished":"2019-08-10T12:20:24.000Z","dateModified":"2019-08-10T21:08:49.000Z","keywords":"Basic","description":" 前言干话\n前几天骑摩托跑了一趟安徽小长途，皖南之山风光怡人，道不宽弯不缓但好在路面整洁鲜有砂石，人车稀少，即便穿过村庄的羊肠小道都被收拾得清清爽爽，一不留神就能满胎。特别是黄山附近的 S103、G205，黄昏和夜间骑行你甚至会恍惚从风中听到应景的 &lt;豆腐宅急便&gt;…\n“没上黄山。”\n“啊？你都到黄山脚下了没上山去？”\n“每天舒舒服服睡到中午，骑个车多美，爬山下回吧…”\n回杭第一天就发现有一个同样做李宏毅老师机器学习内容的团队火了。大概团队是 8 个同学用了半年时间，把李老师的课程图文版和相关代码都做了整理呈现。这个团队叫 DataWhale，该项目的地址在这。\n突然好酸啊。虽然动得比人早，但人家已经完结了并且收获了不错的影响力，十分羡慕，团队的力量是强大。\n不过相对于 DataWhale 100% 完整还原课程所有内容，本站的方向还是坚持用大白话把这事儿「聊明白」，力求让你承受尽可能小的「时间负担」和「认知负担」来搞懂机器学习。所以我还是会坚持把这块内容挤完的…啊哈哈哈哈。\n当然还有个插曲，我很荣幸和意外地被拉入了上述这个 12 人的开源项目小组，希望后续有机会能一起做些有趣的事情咯。\n今天废话有点多，马上开始分类（Classification）吧。","publisher":{"@type":"Organization","name":"對話·機器 | Talk2.it","logo":{"@type":"ImageObject","url":"http://cdn.1ouo1.com/3m7q9.jpg"}},"author":{"@type":"Person","name":"Bingo","description":"A good talk to the MACHINE in front of you.","image":"http://cdn.1ouo1.com/3m7q9.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://talk2.it/post/classification/"},"thumbnailUrl":"http://cdn.1ouo1.com/qh00v.jpg"}]</script><script async src="//www.googletagmanager.com/gtag/js?id=UA-138981623-1"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag('js', new Date());gtag('config', 'UA-138981623-1');</script><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<is-d2a57d></is-d2a57d>
+<script src="/runtime.a5dd35324ddfd942bef1.js"></script>
+<script src="/polyfills.bd3fb034406e30e3b5dc.js"></script>
+<script src="/main.dcb2507d5003b2c77884.en.js"></script></body>
+</html>
